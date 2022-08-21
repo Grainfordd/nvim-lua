@@ -11,7 +11,7 @@ require('nvim-treesitter.configs').setup{
 		enable = true,
 		additional_vim_regex_highlighting = true,
 	},
-	indent = {enable = true, disable = {'haml'}}
+	-- indent = {enable = true, disable = {'haml'}}
 
 	-- Rainbow Parentheses
 	-- rainbow = {
@@ -32,7 +32,7 @@ cmd[[
 	  return !col || getline('.')[col - 1]  =~# '\s'
 	endfunction
 
-	inoremap <expr> <tab> coc#pum#visible() ? coc#pum#confirm() : "\<tax>"
+	inoremap <expr> <tab> coc#pum#visible() ? coc#pum#confirm() : "\<tab>"
 
 	inoremap <silent><expr> <c-t>
       \ coc#pum#visible() ? coc#pum#next(1) :
