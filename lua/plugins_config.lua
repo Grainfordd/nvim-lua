@@ -1,5 +1,5 @@
 local cmd = vim.cmd
-
+local g = vim.g
 
 cmd([[colorscheme gruvbox]])
 
@@ -41,3 +41,8 @@ cmd[[
 
 ]]
 
+-- NeoFormat
+-- cmd([[let g:neoformat_enabled_cpp = ['clang-format']]])
+-- g.neoformat_enabled_cpp = {'clang-format'}
+-- g.neoformat_enabled_python = {'astyle'}
+g.neoformat_run_all_formatters = 1
