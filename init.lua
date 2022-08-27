@@ -18,3 +18,5 @@ opt.shiftwidth = 4
 
 opt.termguicolors = true
 opt.mouse = 'a'
+
+
