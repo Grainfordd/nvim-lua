@@ -18,8 +18,10 @@ map('n', '<J>', '10<j>', noremap)
 
 
 -- NerdTree
-map('n', '<Leader>nt', ':NERDTreeFind<CR>', noremap)
-cmd([[let NERDTreeQuitOnOpen=1]])
+-- map('n', '<Leader>nt', ':NERDTreeFind<CR>', noremap)
+-- cmd([[let NERDTreeQuitOnOpen=1]])
+
+map('n', '<Leader>nt', ':NvimTreeToggle<CR>', noremap)
 
 -- EasyMotion
 map('n', '<Leader>s', '<Plug>(easymotion-s2)', noremap)
@@ -29,4 +31,5 @@ map('n', '<Leader>r', ':!g++ -Wall % && ./a.out<CR>', noremapSilent)
 map('n', 'J', '5j', noremapSilent)
 map('n', 'K', '5k', noremapSilent)
 
-
+-- Terminal
+map('n', '<F5>', ':FloatermNew --autoclose=0 python %<cr>', noremapSilent)

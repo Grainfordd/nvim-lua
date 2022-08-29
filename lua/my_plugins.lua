@@ -8,7 +8,9 @@ end
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 	
+	-- Themes
 	use 'morhetz/gruvbox'
+	use 'EdenEast/nightfox.nvim'
 
 	-- Syntax
 	use {
@@ -20,13 +22,7 @@ return require('packer').startup(function(use)
 	use 'RRethy/vim-illuminate'
 
 	-- Status line
-	-- use {
-	-- 	'nvim-lualine/lualine.nvim',
-	-- 	opt = true
-	-- }	
-	use 'vim-airline/vim-airline'
-	use 'vim-airline/vim-airline-themes'
-
+	use 'ojroques/nvim-hardline'
 
 	use 'kylechui/nvim-surround'
 	use 'jiangmiao/auto-pairs'
@@ -35,11 +31,13 @@ return require('packer').startup(function(use)
 	-- Formatter
 	use 'sbdchd/neoformat'
 
-	-- use 'kyazdani42/nvim-tree.lua'
-	use 'preservim/nerdtree'
+	use 'kyazdani42/nvim-tree.lua'
+	-- use 'preservim/nerdtree'
+	use 'ryanoasis/vim-devicons'
 	use 'christoomey/vim-tmux-navigator'
 	use 'easymotion/vim-easymotion'
 
+	
 	-- Tabs
 	use 'ap/vim-buftabline'
 
@@ -56,6 +54,25 @@ return require('packer').startup(function(use)
 
 	-- jueguitos
 	use 'alec-gibson/nvim-tetris'
+	use 'seandewar/nvimesweeper'
+	use 'ThePrimeagen/vim-be-good'
+	
+	-- Terminal
+	use 'voldikss/vim-floaterm'
+
+
+	-- Scrollbar
+	use 'petertriho/nvim-scrollbar'
+	use 'karb94/neoscroll.nvim'
+	use 'folke/tokyonight.nvim'
+
+	-- color
+	use 'NvChad/nvim-colorizer.lua'
+	use 'ap/vim-css-color'
+
+	-- Fuzzy finder
+	use 'nvim-telescope/telescope.nvim'
+	use 'nvim-lua/plenary.nvim'
 
 
   if packer_bootstrap then

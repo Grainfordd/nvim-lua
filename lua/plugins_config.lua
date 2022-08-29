@@ -1,8 +1,10 @@
 local cmd = vim.cmd
 local g = vim.g
+local opts = {buffer = 0}
 
-cmd([[colorscheme gruvbox]])
-
+-- Theme
+-- cmd([[colorscheme gruvbox]])
+cmd([[colorscheme nightfox]])
 
 -- Syntax configuration
 require('nvim-treesitter.configs').setup{
@@ -41,8 +43,49 @@ cmd[[
 
 ]]
 
--- NeoFormat
--- cmd([[let g:neoformat_enabled_cpp = ['clang-format']]])
--- g.neoformat_enabled_cpp = {'clang-format'}
--- g.neoformat_enabled_python = {'astyle'}
+-- Formatter
 g.neoformat_run_all_formatters = 1
+
+require('neoscroll').setup()
+
+
+-- StatusLine
+-- g.airline_theme='tomorrow'
+-- g.airline_powerline_fonts = 1
+require('hardline').setup()
+require('nvim-surround').setup()
+
+-- Scrollbar
+
+local colors = require('tokyonight.colors').setup()
+
+require('scrollbar').setup({
+	handle = {
+		color = colors.bg_highlight,
+	},
+	marks = {
+		Search = { color = colors.orange },
+        Error = { color = colors.error },
+        Warn = { color = colors.warning },
+        Info = { color = colors.info },
+        Hint = { color = colors.hint },
+        Misc = { color = colors.purple },
+	}
+})
+
+--NVIMTREE
+require('nvim-tree').setup({
+	view = {
+		mappings = {
+			list = {
+				{key='s', action='vsplit'},
+			},
+		},
+	},
+	actions = {
+		open_file = {
+			quit_on_open = true
+		},
+	},
+})
+
