@@ -89,3 +89,6 @@ require('nvim-tree').setup({
 	},
 })
 
+-- LaTeX
+g.vimtex_view_method = 'zathura'
+g.vimtex_compiler_method = 'latexmk'

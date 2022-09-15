@@ -74,6 +74,11 @@ return require('packer').startup(function(use)
 	use 'nvim-telescope/telescope.nvim'
 	use 'nvim-lua/plenary.nvim'
 
+	-- LaTeX
+	use 'lervag/vimtex'
+	use 'xuhdev/vim-latex-live-preview'
+
+
 
   if packer_bootstrap then
     require('packer').sync()
