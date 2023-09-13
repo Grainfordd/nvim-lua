@@ -2,9 +2,10 @@ local cmd = vim.cmd
 local g = vim.g
 local opts = {buffer = 0}
 
+
 -- Theme
--- cmd([[colorscheme gruvbox]])
-cmd([[colorscheme nightfox]])
+cmd([[colorscheme gruvbox-material]])
+-- cmd([[colorscheme nightfox]])
 
 -- Syntax configuration
 require('nvim-treesitter.configs').setup{
@@ -14,34 +15,15 @@ require('nvim-treesitter.configs').setup{
 		additional_vim_regex_highlighting = true,
 	},
 	-- indent = {enable = true, disable = {'haml'}}
+	rainbow = {
+		enable = true,
+		extendend_mode = true,
+		max_file_lines = nil,
 
-	-- Rainbow Parentheses
-	-- rainbow = {
-	-- 	enable = true,
-	-- 	extended_mode = true,
-	-- 	max_file_lines = nil,
-	-- }
+	}
 }
 
 require 'nvim-treesitter.install'.compilers = {'clang'}
-
-
--- Coc Config
-
-cmd[[
-	function! CheckBackspace() abort
-	  let col = col('.') - 1
-	  return !col || getline('.')[col - 1]  =~# '\s'
-	endfunction
-
-	inoremap <expr> <tab> coc#pum#visible() ? coc#pum#confirm() : "\<tab>"
-
-	inoremap <silent><expr> <c-t>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<c-t>" :
-      \ coc#refresh()
-
-]]
 
 -- Formatter
 g.neoformat_run_all_formatters = 1
@@ -75,13 +57,6 @@ require('scrollbar').setup({
 
 --NVIMTREE
 require('nvim-tree').setup({
-	view = {
-		mappings = {
-			list = {
-				{key='s', action='vsplit'},
-			},
-		},
-	},
 	actions = {
 		open_file = {
 			quit_on_open = true
@@ -92,3 +67,40 @@ require('nvim-tree').setup({
 -- LaTeX
 g.vimtex_view_method = 'zathura'
 g.vimtex_compiler_method = 'latexmk'
+
+-- LSPCONFIG
+
+-- local servers = {'clangd, pyright'}
+
+require('mason').setup()
+require('mason-lspconfig').setup()
+
+-- local capabilities = vim.lsp.protocol.make_client_capabalities()
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+local lspconfig = require('lspconfig')
+local lsp_defaults = lspconfig.util.default_config
+
+
+-- for _, lsp in ipairs(servers) do
+-- 	lspconfig[lsp].setup {
+-- 	capabilities = capabilities,
+-- 	}
+-- end
+
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+	'force',
+	lsp_defaults.capabilities,
+	require('cmp_nvim_lsp').default_capabilities()
+)
+
+lspconfig.lua_ls.setup({})
+lspconfig.pyright.setup{}
+lspconfig.fortls.setup{}
+lspconfig.texlab.setup{}
+
+
+
+
+-- Snippets
+require('luasnip.loaders.from_vscode').lazy_load()
