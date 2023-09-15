@@ -4,8 +4,8 @@ local opts = {buffer = 0}
 
 
 -- Theme
-cmd([[colorscheme gruvbox-material]])
--- cmd([[colorscheme nightfox]])
+-- cmd([[colorscheme gruvbox-material]])
+cmd([[colorscheme nightfox]])
 
 -- Syntax configuration
 require('nvim-treesitter.configs').setup{
@@ -28,13 +28,33 @@ require 'nvim-treesitter.install'.compilers = {'clang'}
 -- Formatter
 g.neoformat_run_all_formatters = 1
 
-require('neoscroll').setup()
+require('neoscroll').setup({
+	sections = {
+		lualine_a = {
+			'buffers',
+			show_filename_only = true,
+			mode = 0
+		}
+	}
+})
 
 
+require('lualine').setup()
+require('bufferline').setup({
+	options = {
+		hover = {
+			enabled = true,
+			delay = 200,
+			reveal = {'close'}
+		},
+		separator_style = 'slope',
+
+	}
+})
 -- StatusLine
 -- g.airline_theme='tomorrow'
 -- g.airline_powerline_fonts = 1
-require('hardline').setup()
+-- require('hardline').setup()
 require('nvim-surround').setup()
 
 -- Scrollbar
@@ -68,10 +88,9 @@ require('nvim-tree').setup({
 g.vimtex_view_method = 'zathura'
 g.vimtex_compiler_method = 'latexmk'
 
+require('toggleterm').setup()
+
 -- LSPCONFIG
-
--- local servers = {'clangd, pyright'}
-
 require('mason').setup()
 require('mason-lspconfig').setup()
 
@@ -82,11 +101,6 @@ local lspconfig = require('lspconfig')
 local lsp_defaults = lspconfig.util.default_config
 
 
--- for _, lsp in ipairs(servers) do
--- 	lspconfig[lsp].setup {
--- 	capabilities = capabilities,
--- 	}
--- end
 
 lsp_defaults.capabilities = vim.tbl_deep_extend(
 	'force',
@@ -98,9 +112,6 @@ lspconfig.lua_ls.setup({})
 lspconfig.pyright.setup{}
 lspconfig.fortls.setup{}
 lspconfig.texlab.setup{}
-
-
-
 
 -- Snippets
 require('luasnip.loaders.from_vscode').lazy_load()

@@ -29,7 +29,6 @@ return require('packer').startup(function(use)
 	use 'nvim-lua/plenary.nvim'
 
 	-- Themes
-	use 'morhetz/gruvbox'
 	use 'EdenEast/nightfox.nvim'
 	use 'sainnhe/everforest'
 	use 'sainnhe/gruvbox-material'
@@ -49,8 +48,16 @@ return require('packer').startup(function(use)
 	-- Highlight same words
 	use 'RRethy/vim-illuminate'
 
+	-- Notificaciones
+	use 'rcarriga/nvim-notify'
+
+	use 'akinsho/toggleterm.nvim'
+	use 'folke/which-key.nvim'
+
 	-- Status line
-	use 'ojroques/nvim-hardline'
+	-- use 'ojroques/nvim-hardline'
+	use 'nvim-lualine/lualine.nvim'
+	use 'akinsho/bufferline.nvim'
 
 	use 'kylechui/nvim-surround'
 	use 'jiangmiao/auto-pairs'
@@ -63,7 +70,7 @@ return require('packer').startup(function(use)
 	use 'easymotion/vim-easymotion'
 
 	-- Tabs
-	use 'ap/vim-buftabline'
+	-- use 'ap/vim-buftabline'
 
 	-- Comentarios
 	use 'tpope/vim-commentary'
@@ -97,6 +104,7 @@ return require('packer').startup(function(use)
 
 
 	-- LaTeX
+	use 'lervag/vimtex'
 	use 'frabjous/knap'
 
 

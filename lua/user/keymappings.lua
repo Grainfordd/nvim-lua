@@ -32,7 +32,7 @@ map('n', 'J', '5j', noremapSilent)
 map('n', 'K', '5k', noremapSilent)
 
 -- Latex
-map('n', '<Leader>,', ':!pdflatex %<CR>', noremapSilent)
+map('n', '<Leader>,', ':VimtexCompile<CR>', noremapSilent)
 
 -- Terminal
 -- map('n', '<F5>', ':FloatermNew --autoclose=0 python %<cr>', noremapSilent)

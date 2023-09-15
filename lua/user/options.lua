@@ -22,7 +22,11 @@ opt.smartcase = true
 opt.ignorecase = true
 
 opt.updatetime = 300 -- Completado más rápido 4000 defuault
+opt.mouse = 'a'
 
 
 vim.cmd([[autocmd TermOpen * setlocal nonumber norelativenumber]])
 vim.cmd([[autocmd TermOpen * startinsert]])
+
+vim.notify = require('notify')
+require("notify")("My super important message")
