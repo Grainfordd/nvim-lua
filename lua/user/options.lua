@@ -28,5 +28,7 @@ opt.mouse = 'a'
 vim.cmd([[autocmd TermOpen * setlocal nonumber norelativenumber]])
 vim.cmd([[autocmd TermOpen * startinsert]])
 
+vim.o.shell = 'powershell.exe'
+
 vim.notify = require('notify')
-require("notify")("My super important message")
+-- require("notify")("My super important message")

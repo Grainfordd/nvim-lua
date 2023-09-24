@@ -23,7 +23,7 @@ require('nvim-treesitter.configs').setup{
 	}
 }
 
-require 'nvim-treesitter.install'.compilers = {'clang'}
+-- require 'nvim-treesitter.install'.compilers = {'clang'}
 
 -- Formatter
 g.neoformat_run_all_formatters = 1
@@ -112,6 +112,8 @@ lspconfig.lua_ls.setup({})
 lspconfig.pyright.setup{}
 lspconfig.fortls.setup{}
 lspconfig.texlab.setup{}
+lspconfig.clangd.setup{}
+lspconfig.jdtls.setup{}
 
 -- Snippets
 require('luasnip.loaders.from_vscode').lazy_load()
