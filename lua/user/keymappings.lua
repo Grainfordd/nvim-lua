@@ -26,13 +26,43 @@ map('n', '<Leader>nt', ':NvimTreeToggle<CR>', noremap)
 -- EasyMotion
 map('n', '<Leader>s', '<Plug>(easymotion-s2)', noremap)
 
-map('n', '<Leader>r', ':!g++ -Wall % && ./a.out<CR>', noremapSilent)
+-- Compilación
+
+function CompileCode()
+	extension = vim.fn.expand('%:e')
+	vim.cmd('below split')
+
+	codigo = string.format("terminal %s", "python3 %")
+	if extension == "py" then
+		vim.cmd(codigo)
+
+	elseif extension == "f90" then
+		vim.cmd("terminal gfortran -Wall % && ./a.out")
+
+	elseif extension == "cpp" or extension == "g++" then 
+		vim.cmd("terminal g++ -Wall % && ./a.out")
+	elseif extension == "jl" then
+		vim.cmd("terminal julia %")
+	end
+
+	-- vim.cmd(codigo)
+	-- vim.cmd("terminal python3 %")
+	vim.cmd('resize 7')
+end
+
+vim.api.nvim_create_user_command('CompileCode', CompileCode, {})
+-- vim.api.nvim_create_user_command('CompilePython', OpenTermBelow, {"python3 %<CR>"})
+
+map('n', '<Leader>r', ':term g++ -Wall % && ./a.out<CR>', noremapSilent)
+-- map('n', '<Leader>f', ':term gfortran -Wall % && ./a.out<CR>', noremapSilent)
+map('n', '<Leader>f', ':CompileCode<CR>', noremapSilent)
+-- map('n', '<Leader>p', ':term python3 %<CR>', noremapSilent)
+map('n', '<Leader>p', ':CompilePython<CR>', noremapSilent)
+
+
 
 map('n', 'J', '5j', noremapSilent)
 map('n', 'K', '5k', noremapSilent)
 
 -- Latex
 map('n', '<Leader>,', ':VimtexCompile<CR>', noremapSilent)
-
--- Terminal
--- map('n', '<F5>', ':FloatermNew --autoclose=0 python %<cr>', noremapSilent)

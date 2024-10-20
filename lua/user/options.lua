@@ -25,10 +25,11 @@ opt.updatetime = 300 -- Completado más rápido 4000 defuault
 opt.mouse = 'a'
 
 
+
 vim.cmd([[autocmd TermOpen * setlocal nonumber norelativenumber]])
 vim.cmd([[autocmd TermOpen * startinsert]])
 
-vim.o.shell = 'powershell.exe'
+-- vim.o.shell = 'powershell.exe'
 
 vim.notify = require('notify')
 -- require("notify")("My super important message")

@@ -8,20 +8,20 @@ local opts = {buffer = 0}
 cmd([[colorscheme nightfox]])
 
 -- Syntax configuration
-require('nvim-treesitter.configs').setup{
-	sync_install = false,
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = true,
-	},
-	-- indent = {enable = true, disable = {'haml'}}
-	rainbow = {
-		enable = true,
-		extendend_mode = true,
-		max_file_lines = nil,
+-- require('nvim-treesitter.configs').setup{
+-- 	sync_install = false,
+-- 	highlight = {
+-- 		enable = true,
+-- 		additional_vim_regex_highlighting = true,
+-- 	},
+-- 	-- indent = {enable = true, disable = {'haml'}}
+-- 	rainbow = {
+-- 		enable = true,
+-- 		extendend_mode = true,
+-- 		max_file_lines = nil,
 
-	}
-}
+-- 	}
+-- }
 
 -- require 'nvim-treesitter.install'.compilers = {'clang'}
 
@@ -85,8 +85,8 @@ require('nvim-tree').setup({
 })
 
 -- LaTeX
-g.vimtex_view_method = 'zathura'
-g.vimtex_compiler_method = 'latexmk'
+-- g.vimtex_view_method = 'okular'
+-- g.vimtex_compiler_method = 'latexmk'
 
 require('toggleterm').setup()
 
@@ -108,12 +108,27 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 	require('cmp_nvim_lsp').default_capabilities()
 )
 
-lspconfig.lua_ls.setup({})
+-- lspconfig.lua_ls.setup({})
 lspconfig.pyright.setup{}
-lspconfig.fortls.setup{}
+-- lspconfig.fortls.setup{}
 lspconfig.texlab.setup{}
 lspconfig.clangd.setup{}
-lspconfig.jdtls.setup{}
+-- lspconfig.jdtls.setup{}
+require('lspconfig').fortls.setup{
+  root_dir = function(fname)
+    return require('lspconfig').util.path.dirname(fname)
+  end,
+  -- cmd = {
+	  -- 'fortls',
+	  -- '--lowercase_instrisics',
+	  -- '--hover_signature',
+	  -- '--hover_language=fortran',
+	  -- '--use_signature_help'
+  -- }
+}
+
+
+	
 
 -- Snippets
 require('luasnip.loaders.from_vscode').lazy_load()
