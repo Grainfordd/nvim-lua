@@ -14,6 +14,7 @@ map('n', '<Enter>', 'o<ESC>', noremap)
 map('n', '<C-n>', ':bnext<CR>', noremap)
 map('n', '<K>', '10<k>', noremap)
 map('n', '<J>', '10<j>', noremap)
+map('n', ';', 'A;<ESC>', noremap)
 
 
 -- Move betwenn buffers
@@ -30,24 +31,36 @@ map('n', '<Leader>s', '<Plug>(easymotion-s2)', noremap)
 
 function CompileCode()
 	extension = vim.fn.expand('%:e')
+	vim.cmd('w')
 	vim.cmd('below split')
 
 	codigo = string.format("terminal %s", "python3 %")
 	if extension == "py" then
 		vim.cmd(codigo)
 
-	elseif extension == "f90" then
+	elseif extension == "f90" or extension == "f95" then
 		vim.cmd("terminal gfortran -Wall % && ./a.out")
+
+	-- elseif extension == "cpp" or extension == "g++" then 
+	-- 	vim.cmd("terminal g++ -Wall % && ./a.out")
+	--
+	elseif extension == "cpp" or extension == "g++" then 
+		vim.cmd("terminal g++ % -larmadillo  && ./a.out")
 
 	elseif extension == "cpp" or extension == "g++" then 
 		vim.cmd("terminal g++ -Wall % && ./a.out")
 	elseif extension == "jl" then
-		vim.cmd("terminal julia %")
+		vim.cmd("terminal julia %") elseif extension == "m" then
+		vim.cmd("terminal octave %")
+	elseif extension == "c" then
+		vim.cmd("terminal gcc -Wall % -lm && ./a.out")
+	elseif extension == "js" then
+		vim.cmd("terminal node %")
 	end
 
 	-- vim.cmd(codigo)
 	-- vim.cmd("terminal python3 %")
-	vim.cmd('resize 7')
+	vim.cmd('resize 10')
 end
 
 vim.api.nvim_create_user_command('CompileCode', CompileCode, {})

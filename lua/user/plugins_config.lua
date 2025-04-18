@@ -113,6 +113,7 @@ lspconfig.pyright.setup{}
 -- lspconfig.fortls.setup{}
 lspconfig.texlab.setup{}
 lspconfig.clangd.setup{}
+lspconfig.matlab_ls.setup{}
 -- lspconfig.jdtls.setup{}
 require('lspconfig').fortls.setup{
   root_dir = function(fname)
