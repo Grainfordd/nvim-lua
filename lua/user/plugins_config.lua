@@ -82,6 +82,10 @@ require('nvim-tree').setup({
 			quit_on_open = true
 		},
 	},
+	git = {
+		ignore = false;
+	}
+
 })
 
 -- LaTeX
@@ -133,3 +137,6 @@ require('lspconfig').fortls.setup{
 
 -- Snippets
 require('luasnip.loaders.from_vscode').lazy_load()
+-- Silence the specific position encoding message
+
+local notify_original = vim.notify

@@ -63,7 +63,15 @@ function CompileCode()
 	vim.cmd('resize 10')
 end
 
+function CompileMake()
+	vim.cmd('w')
+	vim.cmd('below split')
+	vim.cmd('resize +10')
+	vim.cmd("terminal make -C .. && ../programa")
+end
+
 vim.api.nvim_create_user_command('CompileCode', CompileCode, {})
+vim.api.nvim_create_user_command('CompileMake', CompileMake, {})
 -- vim.api.nvim_create_user_command('CompilePython', OpenTermBelow, {"python3 %<CR>"})
 
 map('n', '<Leader>r', ':term g++ -Wall % && ./a.out<CR>', noremapSilent)
@@ -71,6 +79,7 @@ map('n', '<Leader>r', ':term g++ -Wall % && ./a.out<CR>', noremapSilent)
 map('n', '<Leader>f', ':CompileCode<CR>', noremapSilent)
 -- map('n', '<Leader>p', ':term python3 %<CR>', noremapSilent)
 map('n', '<Leader>p', ':CompilePython<CR>', noremapSilent)
+map('n', '<Leader>m', ':CompileMake<CR>', noremapSilent)
 
 
 
